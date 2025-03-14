@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        
+        .app-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .company-info {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #333;
+        }
+        
+        .company-header {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+        }
+        
+        .company-name {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #000;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .company-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .info-card {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #f8f8f8;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .info-card h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-card p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .deals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .deal-tag {
+            padding: 6px 12px;
+            background-color: #e8f5e9;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #2e7d32;
+            border: 1px solid #81c784;
+        }
+        
+        .quote-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .quote-left, .quote-right {
+            flex: 1;
+        }
+        
+        .info-row {
+            margin-bottom: 5px;
+            display: flex;
+        }
+        
+        .info-row strong {
+            width: 120px;
+            font-weight: 600;
+            display: inline-block;
+            color: #333;
+        }
+        
+        .quote-details {
+            display: none;
+        }
+        
+        .info-block {
+            margin-bottom: 8px;
+        }
+        
+        .info-block strong {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+        
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+        
+        .item-form {
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .item-form h3 {
+            margin-top: 0;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .item-form input {
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .summary {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin: 20px 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .summary div {
+            display: flex;
+            justify-content: space-between;
+            width: 250px;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+        
+        .summary label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .summary #total {
+            font-weight: 700;
+            font-size: 18px;
+            color: #000;
+        }
+        
+        .total-row {
+            border-top: 2px solid #333;
+            padding-top: 8px !important;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 12px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .delete-btn {
+            background-color: #f44336;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .container {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            body {
+                padding: 0;
+                background-color: white;
+            }
+            
+            th {
+                background-color: #333 !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #f2f2f2 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .info-card {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                border-left: 4px solid #4CAF50 !important;
+            }
+            
+            .deal-tag {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background-color: #e8f5e9 !important;
+                border: 1px solid #81c784 !important;
+                color: #2e7d32 !important;
+            }
+        }
+        
+        .terms-conditions {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .terms-conditions h3 {
+            font-size: 16px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .terms-conditions ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        
+        .terms-conditions li {
+            margin-bottom: 5px;
+        }
+        
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+        
+        .signature p {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="company-info">
+            <div class="company-header">
+                <input type="text" id="companyName" placeholder="Company Name" value="HAMZA & BROTHERS SECURITY & NETWORKING SYSTEM" class="no-print" style="width: 100%; text-align: center; font-weight: bold; font-size: 16px;">
+                <h2 id="companyNameDisplay" class="company-name">HAMZA & BROTHERS SECURITY & NETWORKING SYSTEM</h2>
+            </div>
+            <div class="company-details">
+                <div class="info-card">
+                    <h4>Address</h4>
+                    <p>Shop On 1st Floor B Block New Spinzer IT Tower University Road Peshawar</p>
+                </div>
+                <div class="info-card">
+                    <h4>Contact</h4>
+                    <p>Mob: 0312 0191921</p>
+                </div>
+                <div class="info-card">
+                    <h4>Services</h4>
+                    <div class="deals">
+                        <span class="deal-tag">Wifi Camera</span>
+                        <span class="deal-tag">Computer Networking</span>
+                        <span class="deal-tag">Biometric Access Control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Editor form (only visible in edit mode) -->
+        <div class="quote-details no-print">
+            <div>
+                <label for="quoteNumber">Quote Number:</label>
+                <input type="text" id="quoteNumber" placeholder="Quote Number" readonly>
+                
+                <label for="quoteDate">Quote Date:</label>
+                <input type="date" id="quoteDate">
+            </div>
+            <div>
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" placeholder="Customer Name" value="Osama">
+                
+                <label for="customerId">Customer ID:</label>
+                <input type="text" id="customerId" placeholder="Customer ID" readonly>
+                
+                <label for="customerLocation">Customer Location:</label>
+                <input type="text" id="customerLocation" placeholder="Location" value="Pakistan">
+            </div>
+        </div>
+        
+        <!-- Compact header that shows in both edit and print modes -->
+        <div class="quote-header">
+            <div class="quote-left">
+                <div class="info-row">
+                    <strong>Quote Number:</strong> <span id="quoteNumberDisplay"></span>
+                </div>
+                <div class="info-row">
+                    <strong>Quote Date:</strong> <span id="quoteDateDisplay"></span>
+                </div>
+            </div>
+            <div class="quote-right">
+                <div class="info-row">
+                    <strong>Customer:</strong> <span id="customerNameDisplay">Osama</span>
+                </div>
+                <div class="info-row">
+                    <strong>ID:</strong> <span id="customerIdDisplay"></span>
+                </div>
+                <div class="info-row">
+                    <strong>Location:</strong> <span id="customerLocationDisplay">Pakistan</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="item-form no-print">
+            <h3>Add Item</h3>
+            <input type="text" id="itemName" placeholder="Item Name">
+            <input type="text" id="itemDescription" placeholder="Description">
+            <input type="number" id="itemUnitPrice" placeholder="Unit Price" min="0">
+            <input type="number" id="itemQuantity" placeholder="Quantity" min="1" value="1">
+            <button onclick="addItem()">Add Item</button>
+        </div>
+        
+        <table id="itemsTable">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Unit Cost</th>
+                    <th>Quantity</th>
+                    <th>Line Total</th>
+                    <th class="no-print">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="itemsTableBody">
+                <!-- Items will be added here -->
+            </tbody>
+        </table>
+        
+        <div class="summary">
+            <div>
+                <label>Net:</label>
+                <span id="netTotal">Rs 0.00</span>
+            </div>
+            <div>
+                <label>Subtotal:</label>
+                <span id="subtotal">Rs 0.00</span>
+            </div>
+            <div class="total-row">
+                <label>Total:</label>
+                <span id="total">Rs 0.00</span>
+            </div>
+            <div>
+                <label>Paid to Date:</label>
+                <span id="paidToDate">Rs 0.00</span>
+            </div>
+        </div>
+        
+        <div class="terms-conditions">
+            <h3>Terms and Conditions</h3>
+            <ul>
+                <li>Prices are subject to change without prior notice.</li>
+                <li>Payment is due within 30 days of invoice date.</li>
+                <li>Warranty is provided as per manufacturer's terms.</li>
+                <li>Installation charges may apply.</li>
+            </ul>
+        </div>
+        
+        <div class="signature">
+            <p>Authorized Signature: ___________________________</p>
+        </div>
+        
+        <div class="action-buttons no-print">
+            <button onclick="resetForm()">Reset</button>
+            <button onclick="generateNewQuote()">Generate New Quote</button>
+            <button onclick="printQuotation()">Generate Printable Quotation</button>
+        </div>
+    </div>
+    
+    <script>
+        // Generate dynamic quote numbers and customer IDs
+        function generateQuoteNumber() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            return `QT-${year}${month}${day}-${hours}${minutes}`;
+        }
+        
+        function generateCustomerId() {
+            // Generate a customer ID based on timestamp and random number
+            const timestamp = Date.now().toString().slice(-6);
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `C${timestamp}${random}`;
+        }
+        
+        // Initialize the form
+        function initializeForm() {
+            // Set today's date
+            const today = new Date();
+            const formattedDate = today.toISOString().substr(0, 10);
+            document.getElementById('quoteDate').value = formattedDate;
+            
+            // Generate dynamic quote number and customer ID
+            document.getElementById('quoteNumber').value = generateQuoteNumber();
+            document.getElementById('customerId').value = generateCustomerId();
+            
+            updateDisplay();
+        }
+        
+        // Update display elements when input changes
+        function updateDisplay() {
+            // Update company info
+            document.getElementById('companyNameDisplay').textContent = document.getElementById('companyName').value;
+            
+            // Update quote details
+            const quoteNumber = document.getElementById('quoteNumber').value;
+            document.getElementById('quoteNumberDisplay').textContent = quoteNumber;
+            
+            // Format date for display
+            const dateInput = document.getElementById('quoteDate');
+            if (dateInput.value) {
+                const date = new Date(dateInput.value);
+                const options = { day: 'numeric', month: 'short', year: 'numeric' };
+                const formattedDate = date.toLocaleDateString('en-GB', options);
+                document.getElementById('quoteDateDisplay').textContent = formattedDate;
+            }
+            
+            // Update customer info
+            const customerName = document.getElementById('customerName').value;
+            document.getElementById('customerNameDisplay').textContent = customerName;
+            
+            const customerId = document.getElementById('customerId').value;
+            document.getElementById('customerIdDisplay').textContent = customerId;
+            
+            const customerLocation = document.getElementById('customerLocation').value;
+            document.getElementById('customerLocationDisplay').textContent = customerLocation;
+        }
+        
+        // Add item to the table
+        function addItem() {
+            const itemName = document.getElementById('itemName').value;
+            const itemDescription = document.getElementById('itemDescription').value;
+            const unitPrice = parseFloat(document.getElementById('itemUnitPrice').value) || 0;
+            const quantity = parseInt(document.getElementById('itemQuantity').value) || 1;
+            const lineTotal = unitPrice * quantity;
+            
+            if (!itemName) {
+                alert('Please enter an item name');
+                return;
+            }
+            
+            const tableBody = document.getElementById('itemsTableBody');
+            const row = tableBody.insertRow();
+            
+            // Add cells for item details
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            const cell3 = row.insertCell(2);
+            const cell4 = row.insertCell(3);
+            const cell5 = row.insertCell(4);
+            const cell6 = row.insertCell(5);
+            
+            cell1.textContent = itemName;
+            cell2.textContent = itemDescription;
+            cell3.textContent = `Rs ${unitPrice.toFixed(2)}`;
+            cell4.textContent = quantity;
+            cell5.textContent = `Rs ${lineTotal.toFixed(2)}`;
+            
+            // Add delete button
+            cell6.className = 'no-print';
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-btn';
+            deleteButton.onclick = function() {
+                tableBody.removeChild(row);
+                updateTotals();
+            };
+            cell6.appendChild(deleteButton);
+            
+            // Clear input fields
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemDescription').value = '';
+            document.getElementById('itemUnitPrice').value = '';
+            document.getElementById('itemQuantity').value = '1';
+            
+            updateTotals();
+        }
+        
+        // Update totals in the summary section
+        function updateTotals() {
+            const tableBody = document.getElementById('itemsTableBody');
+            const rows = tableBody.rows;
+            let total = 0;
+            
+            for (let i = 0; i < rows.length; i++) {
+                const lineTotal = parseFloat(rows[i].cells[4].textContent.replace('Rs ', '')) || 0;
+                total += lineTotal;
+            }
+            
+            document.getElementById('netTotal').textContent = `Rs ${total.toFixed(2)}`;
+            document.getElementById('subtotal').textContent = `Rs ${total.toFixed(2)}`;
+            document.getElementById('total').textContent = `Rs ${total.toFixed(2)}`;
+        }
+        
+        // Generate a new quote with new IDs
+        function generateNewQuote() {
+            document.getElementById('quoteNumber').value = generateQuoteNumber();
+            document.getElementById('customerId').value = generateCustomerId();
+            updateDisplay();
+        }
+        
+        // Reset the form
+        function resetForm() {
+            if (confirm('Are you sure you want to reset the form? All data will be lost.')) {
+                document.getElementById('companyName').value = 'HAMZA & BROTHERS SECURITY & NETWORKING SYSTEM';
+                document.getElementById('customerName').value = 'Osama';
+                document.getElementById('customerLocation').value = 'Pakistan';
+                
+                const today = new Date();
+                const formattedDate = today.toISOString().substr(0, 10);
+                document.getElementById('quoteDate').value = formattedDate;
+                
+                // Generate new IDs
+                document.getElementById('quoteNumber').value = generateQuoteNumber();
+                document.getElementById('customerId').value = generateCustomerId();
+                
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemDescription').value = '';
+                document.getElementById('itemUnitPrice').value = '';
+                document.getElementById('itemQuantity').value = '1';
+                
+                const tableBody = document.getElementById('itemsTableBody');
+                tableBody.innerHTML = '';
+                
+                document.getElementById('netTotal').textContent = 'Rs 0.00';
+                document.getElementById('subtotal').textContent = 'Rs 0.00';
+                document.getElementById('total').textContent = 'Rs 0.00';
+                document.getElementById('paidToDate').textContent = 'Rs 0.00';
+                
+                updateDisplay();
+            }
+        }
+        
+        // Print the quotation
+        function printQuotation() {
+            updateDisplay();
+            window.print();
+        }
+        
+        // Initialize on document load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeForm();
+            
+            // Add event listeners to all input elements
+            const inputElements = document.querySelectorAll('input');
+            inputElements.forEach(input => {
+                input.addEventListener('input', updateDisplay);
+            });
+        });
+    </script>
+</body>
+</html>
