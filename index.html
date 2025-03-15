@@ -81,6 +81,11 @@
             line-height: 1.4;
         }
         
+        .services-row {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
         .deals {
             display: flex;
             flex-wrap: wrap;
@@ -123,9 +128,9 @@
             color: #333;
         }
         
-        .quote-details {
+        /* .quote-details {
             display: none;
-        }
+        } */
         
         .info-block {
             margin-bottom: 8px;
@@ -355,6 +360,9 @@
                     <h4>Contact</h4>
                     <p>Mob: 0312 0191921</p>
                 </div>
+            </div>
+            <!-- Service deals moved to a separate row -->
+            <div class="services-row">
                 <div class="info-card">
                     <h4>Services</h4>
                     <div class="deals">
@@ -370,19 +378,19 @@
         <div class="quote-details no-print">
             <div>
                 <label for="quoteNumber">Quote Number:</label>
-                <input type="text" id="quoteNumber" placeholder="Quote Number" readonly>
+                <input type="text" id="quoteNumber" placeholder="QN" readonly>
                 
-                <label for="quoteDate">Quote Date:</label>
+                <label for="quoteDate">Q-D:</label>
                 <input type="date" id="quoteDate">
             </div>
             <div>
                 <label for="customerName">Customer Name:</label>
-                <input type="text" id="customerName" placeholder="Customer Name" value="Osama">
+                <input type="text" id="customerName" placeholder="Enter Customer Name" value="">
                 
-                <label for="customerId">Customer ID:</label>
+                <label for="customerId">C-ID:</label>
                 <input type="text" id="customerId" placeholder="Customer ID" readonly>
                 
-                <label for="customerLocation">Customer Location:</label>
+                <label for="customerLocation">C-L:</label>
                 <input type="text" id="customerLocation" placeholder="Location" value="Pakistan">
             </div>
         </div>
@@ -399,7 +407,7 @@
             </div>
             <div class="quote-right">
                 <div class="info-row">
-                    <strong>Customer:</strong> <span id="customerNameDisplay">Osama</span>
+                    <strong>Customer:</strong> <span id="customerNameDisplay"></span>
                 </div>
                 <div class="info-row">
                     <strong>ID:</strong> <span id="customerIdDisplay"></span>
@@ -615,7 +623,7 @@
         function resetForm() {
             if (confirm('Are you sure you want to reset the form? All data will be lost.')) {
                 document.getElementById('companyName').value = 'HAMZA & BROTHERS SECURITY & NETWORKING SYSTEM';
-                document.getElementById('customerName').value = 'Osama';
+                document.getElementById('customerName').value = '';
                 document.getElementById('customerLocation').value = 'Pakistan';
                 
                 const today = new Date();
